@@ -1,41 +1,52 @@
 {
-  "name": "base",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack --watch --progress --config webpack.config.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@babel/core": "^7.18.2",
-    "@babel/preset-env": "^7.18.2",
-    "@babel/register": "^7.17.7",
-    "@tailwindcss/aspect-ratio": "^0.4.0",
-    "@tailwindcss/forms": "^0.5.2",
-    "@tailwindcss/line-clamp": "^0.4.0",
-    "@tailwindcss/typography": "^0.5.2",
-    "autoprefixer": "^10.4.7",
-    "babel-loader": "^8.2.5",
-    "browser-sync": "^2.27.10",
-    "browser-sync-webpack-plugin": "^2.3.0",
-    "cross-env": "^7.0.3",
-    "css-loader": "^6.7.1",
-    "cssnano": "^5.1.11",
-    "eslint-webpack-plugin": "^3.1.1",
-    "mini-css-extract-plugin": "^2.6.0",
-    "postcss": "^8.4.14",
-    "postcss-import": "^14.1.0",
-    "postcss-import-resolver": "^2.0.0",
-    "postcss-loader": "^7.0.0",
-    "postcss-nested": "^5.0.6",
-    "postcss-preset-env": "^7.7.1",
-    "standard": "^17.0.0",
-    "stylelint": "^14.8.5",
-    "tailwindcss": "^3.0.24",
-    "webpack": "^5.73.0",
-    "webpack-cli": "^4.9.2"
-  }
+    "name": "base",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "cross-env NODE_ENV=development webpack --watch --progress --config webpack.config.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@babel/core": "^7.18.2",
+        "@babel/preset-env": "^7.18.2",
+        "@babel/register": "^7.17.7",
+        "@tailwindcss/aspect-ratio": "^0.4.0",
+        "@tailwindcss/forms": "^0.5.2",
+        "@tailwindcss/line-clamp": "^0.4.0",
+        "@tailwindcss/typography": "^0.5.2",
+        "autoprefixer": "^10.4.5",
+        "babel-loader": "^8.2.5",
+        "browser-sync": "^2.27.10",
+        "browser-sync-webpack-plugin": "^2.3.0",
+        "cross-env": "^7.0.3",
+        "css-loader": "^6.7.1",
+        "cssnano": "^5.1.11",
+        "eslint-webpack-plugin": "^3.1.1",
+        "mini-css-extract-plugin": "^2.6.0",
+        "postcss": "^8.4.14",
+        "postcss-import": "^14.1.0",
+        "postcss-import-resolver": "^2.0.0",
+        "postcss-loader": "^7.0.0",
+        "postcss-nested": "^5.0.6",
+        "postcss-preset-env": "^7.7.1",
+        "standard": "^17.0.0",
+        "tailwindcss": "^3.0.24",
+        "webpack": "^5.73.0",
+        "webpack-cli": "^4.9.2"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    }
 }
