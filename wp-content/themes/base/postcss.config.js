@@ -1,9 +1,17 @@
+const resolver = require('postcss-import-resolver')
+const path = require('path')
+
 module.exports = {
     plugins: {
-        'postcss-import': {},
+        'postcss-import': {
+            resolve: resolver({
+                alias: {
+                    '~modules': path.resolve(__dirname, 'modules')
+                }
+            })
+        },
         'tailwindcss/nesting': 'postcss-nesting',
         tailwindcss: {},
-        stylelint: {},
         'postcss-preset-env': {
             features: { 'nesting-rules': false }
         },

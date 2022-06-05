@@ -17,7 +17,7 @@ module.exports = {
     },
     resolve: {
         alias: {
-            'modules-root': path.resolve(__dirname, 'modules')
+            modules: path.resolve(__dirname, 'modules')
         },
         extensions: ['.js', '.jsx', '.scss', '.css']
     },
@@ -34,13 +34,7 @@ module.exports = {
                 test: /\.s?css$/,
                 use: [
                     MiniCssExtractPlugin.loader,
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            modules: true,
-                            importLoaders: 1
-                        }
-                    },
+                    'css-loader',
                     {
                         loader: 'postcss-loader',
                         options: {
@@ -63,22 +57,22 @@ module.exports = {
         new MiniCssExtractPlugin({
             linkType: false,
             filename: '[name].min.css'
+        }),
+        new BrowserSyncPlugin({
+            host: 'localhost',
+            port: 3000,
+            watch: true,
+            proxy: {
+                target: 'http://basewp.lndo.site/',
+                proxyReq: [
+                    proxyReq => {
+                        proxyReq.setHeader(
+                            'X-Base-Parent-Theme-Header',
+                            process.env.NODE_ENV
+                        )
+                    }
+                ]
+            }
         })
-        // new BrowserSyncPlugin({
-        //     host: 'localhost',
-        //     port: 3000,
-        //     watch: true,
-        //     proxy: {
-        //         target: 'http://basewp.lndo.site/',
-        //         proxyReq: [
-        //             proxyReq => {
-        //                 proxyReq.setHeader(
-        //                     'X-Base-Parent-Theme-Header',
-        //                     process.env.NODE_ENV
-        //                 )
-        //             }
-        //         ]
-        //     }
-        // })
     ]
 }
