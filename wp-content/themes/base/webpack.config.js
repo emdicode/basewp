@@ -1,7 +1,7 @@
 const path = require('path')
 const ESLintPlugin = require('eslint-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
+// const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 
 module.exports = {
     mode: process.env.NODE_ENV,
@@ -57,22 +57,30 @@ module.exports = {
         new MiniCssExtractPlugin({
             linkType: false,
             filename: '[name].min.css'
-        }),
-        new BrowserSyncPlugin({
-            host: 'localhost',
-            port: 3000,
-            watch: true,
-            proxy: {
-                target: 'http://basewp.lndo.site/',
-                proxyReq: [
-                    proxyReq => {
-                        proxyReq.setHeader(
-                            'X-Base-Parent-Theme-Header',
-                            process.env.NODE_ENV
-                        )
-                    }
-                ]
-            }
         })
+        // new BrowserSyncPlugin({
+        //     host: 'localhost',
+        //     port: 3000,
+        //     watch: true,
+        //     reload: true,
+        //     injectCss: true,
+        //     files: [
+        //         '**/*.php',
+        //         './modules/**/*.php',
+        //         '**/*.css',
+        //         '**/*.js'
+        //     ],
+        //     proxy: {
+        //         target: 'http://basewp.lndo.site/',
+        //         proxyReq: [
+        //             proxyReq => {
+        //                 proxyReq.setHeader(
+        //                     'X-Base-Parent-Theme-Header',
+        //                     process.env.NODE_ENV
+        //                 )
+        //             }
+        //         ]
+        //     }
+        // })
     ]
 }
