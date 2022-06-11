@@ -13,17 +13,24 @@ class Theme extends Base
     public function add_theme_supports()
     {
         add_theme_support('title-tag');
-        add_theme_support('html5', array('search-form', 'gallery', 'caption'));
+        add_theme_support('html5', array('comment-list', 'comment-form', 'search-form', 'gallery', 'caption'));
         add_theme_support('post-thumbnails');
 
         add_action('after_setup_theme', array(&$this, 'register_menus'));
 
-        add_filter('image_size_names_choose', array(&$this, 'image_size_names_choose'));
+        // Enable RSS feeds
+        add_theme_support( 'automatic-feed-links' );
 
-        add_filter('tiny_mce_before_init', array(&$this, 'insert_formats'));
-        add_filter('mce_buttons_2', array(&$this, 'add_mce_button'), 10, 2);
+        // Enable Widgets refresh from Customizer
+        add_theme_support( 'customize-selective-refresh-widgets' );
 
-        add_editor_style();
+        // Set max content width (embedded)
+        if ( ! isset( $content_width ) ) {
+            $content_width = 1400;
+        }
+
+        // Load translations
+        load_theme_textdomain( self::$textDomain, get_template_directory() . '/languages' );
 
         $this->add_options_page();
     }
@@ -64,77 +71,6 @@ class Theme extends Base
             'header-quick-links' => __('Header Quick Links Menu', self::$textDomain),
             'footer' => __('Footer Menu', self::$textDomain),
             'footer-meta' => __('Footer Copyright Links', self::$textDomain)
-        ));
-    }
-
-    /**
-     * WYSIWYG / Format Dropdown
-     */
-    public function insert_formats($init_array)
-    {
-        $style_formats = array(
-            array(
-                'title' => 'Main Heading',
-                'classes' => 'main-heading',
-                'wrapper' => true,
-            ),
-            array(
-                'title' => 'Sub Heading',
-                'classes' => 'sub-heading',
-                'wrapper' => false,
-            ),
-            array(
-                'title' => 'Secondary Sub Heading',
-                'classes' => 'secondary-sub-heading',
-                'wrapper' => true,
-            ),
-            array(
-                'title' => 'Intro Text',
-                'classes' => 'intro-text',
-                'wrapper' => true,
-            ),
-            array(
-                'title' => 'Button',
-                'block' => 'span',
-                'classes' => 'button button--primary',
-                'wrapper' => true,
-            ),
-            array(
-                'title' => 'Byline',
-                'block' => 'p',
-                'classes' => 'byline',
-                'wrapper' => false,
-            ),
-
-        );
-
-        $init_array['style_formats'] = json_encode($style_formats);
-
-        return $init_array;
-    }
-
-    /**
-     * Add Buttons To WP Editor Toolbar.
-     */
-    public function add_mce_button($buttons, $editor_id)
-    {
-        /* Add it as first item in the row */
-        array_unshift($buttons, 'styleselect');
-        return $buttons;
-    }
-
-    /**
-     * Provide size choices for media library
-     * @param string[] $sizes
-     * @return string[]
-     */
-    public function image_size_names_choose($sizes)
-    {
-        return array_merge($sizes, array(
-            'tiny' => __('Tiny Image', 'barrel-base'),
-            'small' => __('Small Image', 'barrel-base'),
-            'medium' => __('Medium Image', 'barrel-base'),
-            'large' => __('Large Image', 'barrel-base'),
         ));
     }
 }
