@@ -4,7 +4,8 @@ module.exports = {
         './src/**/*.js',
         './module/**/*.{js,php,html}',
         './partials/**/*.{js,php,html}',
-        './templates/**/*.{js,php,html}'
+        './templates/**/*.{js,php,html}',
+        './**/*.{js,php,html}'
     ],
     darkMode: 'class',
     theme: {
